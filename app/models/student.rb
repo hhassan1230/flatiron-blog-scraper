@@ -1,5 +1,4 @@
 class Student
-
   attr_reader :name, :site
 
   STUDENTS = []
@@ -7,11 +6,7 @@ class Student
   def initialize(name, site)
     @name = name
     @site = add_http(site)
-
-
-
     STUDENTS << self
-    # binding.pry
   end
 
   def add_http(site)
@@ -27,10 +22,8 @@ class Student
 
   def to_s
     longest = Student.longest_name_length
-    # difference = 
     formatted_name = name.ljust(longest, " ")
-    # binding.pry
-    "#{formatted_name} | \t\t#{site}"
+    "#{formatted_name} | #{site}"
   end
 
   def self.longest_name_length

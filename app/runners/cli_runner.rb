@@ -25,7 +25,6 @@ class CLIRunner
     scraper.run
     students = Student.all
     display_students(students)
-    # binding.pry
     input = ""
     while input != "0"
       input = student_choice
@@ -45,7 +44,8 @@ class CLIRunner
   def display_students(student_array)
     puts `clear`
     student_array.each_with_index do |student, i|
-      puts "#{i + 1}. #{student.to_s}"
+      puts "#{i + 1}.  #{student.to_s}" if i < 9
+      puts "#{i + 1}. #{student.to_s}"  if i > 9
     end
     puts ""
   end
