@@ -26,13 +26,16 @@ class CLIRunner
     students = Student.all
     display_students(students)
     # binding.pry
-    input = student_choice
-    if input.match(/^\d+$/)
-      open_page(students[input.to_i - 1].site)
-    else
+    input = ""
+    while input != "0"
+      input = student_choice
+      if input.match(/^\d+$/)
+        open_page(students[input.to_i - 1].site) if students[input.to_i - 1] && input.to_i != 0
+      else
 
+      end
     end
-    #make sure its a number and in range
+    exit
   end
 
   def create_scraper
@@ -47,23 +50,13 @@ class CLIRunner
     puts ""
   end
 
-  def help
-    puts `clear`
-    puts "Type 'exit' to exit"
-    puts "Type 'help' to view this menu again"
-    puts "Type 'question (question here)' to search for a question"
-    puts "Type 'question -f (question here)' to search for the first question"
-    puts "Type 'question -t (your tag here) -q (question here)' to search for a question with your tag"
-    puts "Type 'question -f -t (your tag here) -q (question here)' to search for the first question with your tag"
-  end
-
   def exit
     puts `clear`
     puts "Goodbye"
   end
 
   def student_choice
-    puts "Type in number of what student's blog you'd like to view:"
+    puts "Type in number of what student's blog you'd like to view (or 0 to quit):"
     get_user_input
   end
 

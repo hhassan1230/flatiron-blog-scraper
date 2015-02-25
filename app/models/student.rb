@@ -26,9 +26,18 @@ class Student
   end
 
   def to_s
-    "#{name}: \t#{site}"
+    longest = Student.longest_name_length
+    # difference = 
+    formatted_name = name.ljust(longest, " ")
+    # binding.pry
+    "#{formatted_name} | \t\t#{site}"
   end
 
-
-
+  def self.longest_name_length
+    longest = 0
+    all.each do |student|
+      longest = student.name.length if student.name.length > longest
+    end
+    longest
+  end
 end
